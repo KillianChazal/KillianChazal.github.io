@@ -2,36 +2,66 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Projet IA</title>
+  <meta name="viewport" content="width=768, initial-scale=1.0">
+  <title>Fachox.AI</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: white;
+      color: #000;
       margin: 0;
       padding: 0;
     }
+
     nav {
-      background-color: #444;
+      background-color: #4c4ee7;
       display: flex;
       justify-content: space-around;
       padding: 10px;
     }
+
     nav button {
-      background-color: #fff;
+      background-color: white;
+      color: #4c4ee7;
       border: none;
-      padding: 10px;
-      cursor: pointer;
+      padding: 10px 20px;
+      font-size: 16px;
       font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
     }
+
     section {
       display: none;
       padding: 20px;
     }
+
     section.active {
       display: block;
     }
+
+    h2 {
+      color: #4c4ee7;
+    }
+
+    .quiz-question {
+      margin-bottom: 20px;
+    }
+
     .quiz-option {
       display: block;
-      margin: 8px 0;
+      margin: 6px 0;
+      padding: 8px;
+      background-color: #4c4ee7;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .quiz-feedback {
+      margin-top: 10px;
+      font-style: italic;
     }
   </style>
 </head>
@@ -44,39 +74,123 @@
 </nav>
 
 <section id="presentation" class="active">
-  <h2>Titre du Projet : L'IA au quotidien</h2>
-  <p><strong>Équipe :</strong> Alice, Bob, Charlie</p>
-  <p><strong>Synopsis :</strong> Une exploration simple de l'impact de l'Intelligence Artificielle dans notre vie de tous les jours.</p>
-  <p><strong>Remerciements :</strong> Merci à nos professeurs, familles et collègues.</p>
+  <h2>Fachox.AI</h2>
+  <p><strong>Équipe :</strong> Kéo Delorme, Hugo Pouilly, Killian Chazal</p>
+  <p><strong>Synopsis :</strong> En 2030, une nouvelle ère politique commence et le président de la république monte sur son pupitre pour parler aux français. Malheureusement pour lui, son discours des plus importants est perdu par ses subordonnés. S’en suit une obligation de devoir le réaliser via la nouvelle IA générative spécialisée en politique… mais légèrement décalée.</p>
+  <p><strong>Remerciements :</strong> Merci à notre équipe et à Hugo Vignal pour son soutien.</p>
 </section>
 
 <section id="video">
   <h2>Vidéo du projet</h2>
-  <video width="100%" controls>
-    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-    Votre navigateur ne supporte pas la lecture vidéo.
-  </video>
+  <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+    <iframe src="https://www.youtube.com/embed/VIDEOCODE" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+  </div>
 </section>
 
 <section id="quiz">
-  <h2>Quiz : Connaissances en IA</h2>
-  <p>Quelle est une fonction courante de l'IA ?</p>
-  <button class="quiz-option" onclick="checkAnswer(true)">Reconnaissance vocale</button>
-  <button class="quiz-option" onclick="checkAnswer(false)">Faire le café</button>
-  <button class="quiz-option" onclick="checkAnswer(false)">Jouer au tennis</button>
-  <p id="quiz-result"></p>
+  <h2>Quiz : IA, Éthique et Esprit Critique</h2>
+  <div id="quiz-container"></div>
 </section>
 
 <script>
-  function showPage(pageId) {
+  function showPage(id) {
     document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
+    document.getElementById(id).classList.add('active');
   }
 
-  function checkAnswer(correct) {
-    const result = document.getElementById('quiz-result');
-    result.textContent = correct ? "✅ Bonne réponse !" : "❌ Mauvaise réponse.";
-  }
+  const questions = [
+    {
+      q: "1. Que signifie 'IA' ?",
+      a: ["Intelligence Animale", "Intelligence Artificielle", "Ingénierie Avancée"],
+      correct: 1,
+      explanation: "IA signifie Intelligence Artificielle, des systèmes capables d'exécuter des tâches requérant normalement de l'intelligence humaine."
+    },
+    {
+      q: "2. L’IA peut-elle être biaisée ?",
+      a: ["Non, elle est toujours neutre", "Oui, selon les données utilisées", "Uniquement si elle est mal codée"],
+      correct: 1,
+      explanation: "Une IA peut être biaisée si les données d'entraînement le sont. Ce n’est pas une question de codage mais de dataset."
+    },
+    {
+      q: "3. Devrait-on toujours faire confiance aux réponses d’une IA ?",
+      a: ["Oui, c’est fiable", "Non, jamais", "Non, il faut garder un esprit critique"],
+      correct: 2,
+      explanation: "Il faut garder un esprit critique : l’IA peut se tromper ou produire des résultats non éthiques."
+    },
+    {
+      q: "4. Qui est responsable si une IA prend une mauvaise décision ?",
+      a: ["L’IA", "Le développeur ou l’entreprise", "Personne"],
+      correct: 1,
+      explanation: "La responsabilité revient à ceux qui ont conçu ou déployé l’IA, car elle n’a pas de conscience morale."
+    },
+    {
+      q: "5. Quelle est une dérive possible de l’IA ?",
+      a: ["Automatiser des tâches", "Créer des assistants", "Surveiller massivement la population"],
+      correct: 2,
+      explanation: "Une dérive majeure est l’utilisation de l’IA pour la surveillance de masse, sans transparence."
+    },
+    {
+      q: "6. Que faut-il pour rendre une IA éthique ?",
+      a: ["Des lois claires", "Des données transparentes", "Les deux"],
+      correct: 2,
+      explanation: "Les lois et la transparence des données sont nécessaires pour encadrer une IA éthique."
+    },
+    {
+      q: "7. L’IA peut-elle remplacer complètement les humains ?",
+      a: ["Oui", "Non", "Partiellement, mais pas dans tout"],
+      correct: 2,
+      explanation: "L’IA peut aider dans de nombreuses tâches, mais elle ne remplace pas la conscience humaine."
+    },
+    {
+      q: "8. Pourquoi l’IA soulève-t-elle des enjeux philosophiques ?",
+      a: ["Parce qu’elle parle", "Parce qu’elle modifie notre rapport au réel", "Parce qu’elle est mystérieuse"],
+      correct: 1,
+      explanation: "Elle modifie notre perception du vrai, du faux, et de la responsabilité humaine."
+    },
+    {
+      q: "9. Quel est un bon usage de l’IA ?",
+      a: ["Manipuler des opinions", "Optimiser les soins médicaux", "Automatiser la désinformation"],
+      correct: 1,
+      explanation: "Optimiser les soins médicaux est un usage éthique et utile de l’IA."
+    },
+    {
+      q: "10. Que devons-nous toujours faire avec l’IA ?",
+      a: ["L’interdire", "L’utiliser sans réfléchir", "L’interroger et surveiller ses usages"],
+      correct: 2,
+      explanation: "Il faut toujours interroger les usages de l’IA et surveiller son impact."
+    }
+  ];
+
+  const container = document.getElementById("quiz-container");
+
+  questions.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.className = "quiz-question";
+
+    const question = document.createElement("p");
+    question.innerText = item.q;
+    div.appendChild(question);
+
+    item.a.forEach((answer, i) => {
+      const btn = document.createElement("button");
+      btn.innerText = answer;
+      btn.className = "quiz-option";
+      btn.onclick = () => {
+        const feedback = document.createElement("div");
+        feedback.className = "quiz-feedback";
+        if (i === item.correct) {
+          feedback.innerText = "✅ Bonne réponse ! " + item.explanation;
+        } else {
+          feedback.innerText = "❌ Mauvaise réponse. " + item.explanation;
+        }
+        div.querySelectorAll('button').forEach(b => b.disabled = true);
+        div.appendChild(feedback);
+      };
+      div.appendChild(btn);
+    });
+
+    container.appendChild(div);
+  });
 </script>
 
 </body>
