@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Projet IA</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background-color: #444;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px;
+    }
+    nav button {
+      background-color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    section {
+      display: none;
+      padding: 20px;
+    }
+    section.active {
+      display: block;
+    }
+    .quiz-option {
+      display: block;
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <button onclick="showPage('presentation')">Présentation</button>
+  <button onclick="showPage('video')">Vidéo</button>
+  <button onclick="showPage('quiz')">Quiz</button>
+</nav>
+
+<section id="presentation" class="active">
+  <h2>Titre du Projet : L'IA au quotidien</h2>
+  <p><strong>Équipe :</strong> Alice, Bob, Charlie</p>
+  <p><strong>Synopsis :</strong> Une exploration simple de l'impact de l'Intelligence Artificielle dans notre vie de tous les jours.</p>
+  <p><strong>Remerciements :</strong> Merci à nos professeurs, familles et collègues.</p>
+</section>
+
+<section id="video">
+  <h2>Vidéo du projet</h2>
+  <video width="100%" controls>
+    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la lecture vidéo.
+  </video>
+</section>
+
+<section id="quiz">
+  <h2>Quiz : Connaissances en IA</h2>
+  <p>Quelle est une fonction courante de l'IA ?</p>
+  <button class="quiz-option" onclick="checkAnswer(true)">Reconnaissance vocale</button>
+  <button class="quiz-option" onclick="checkAnswer(false)">Faire le café</button>
+  <button class="quiz-option" onclick="checkAnswer(false)">Jouer au tennis</button>
+  <p id="quiz-result"></p>
+</section>
+
+<script>
+  function showPage(pageId) {
+    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+  }
+
+  function checkAnswer(correct) {
+    const result = document.getElementById('quiz-result');
+    result.textContent = correct ? "✅ Bonne réponse !" : "❌ Mauvaise réponse.";
+  }
+</script>
+
+</body>
+</html>
